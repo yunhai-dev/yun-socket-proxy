@@ -1,0 +1,35 @@
+[server]
+bind_address = "0.0.0.0"
+port = 1080
+max_connections = 10000
+connection_timeout_secs = 300
+
+[auth]
+enabled = true
+methods = ["username_password"]
+users = [
+    { username = "admin", password = "admin123" },
+    { username = "user1", password = "pass1" },
+]
+
+[performance]
+# 工作线程数（0 表示使用 CPU 核心数）
+worker_threads = 0
+# 每个连接的缓冲区大小（字节）
+buffer_size = 8192
+# 启用 TCP_NODELAY（禁用 Nagle 算法）
+tcp_nodelay = true
+# 启用 SO_KEEPALIVE
+tcp_keepalive = true
+
+[logging]
+# 日志级别: trace, debug, info, warn, error
+level = "info"
+# 日志格式: json, pretty
+format = "pretty"
+
+[limits]
+# 每秒最大新连接数
+max_connections_per_sec = 100
+# 单个连接最大带宽 (bytes/sec, 0 表示无限制)
+max_bandwidth_per_connection = 0
